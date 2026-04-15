@@ -36,6 +36,10 @@ export const Route = createRootRoute({
       { property: "og:description", content: "Plan your day in 4 time blocks, track streaks, and build lasting habits." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Rhythm — Daily Habit Tracker" },
+      { name: "twitter:description", content: "Plan your day in 4 time blocks, track streaks, and build lasting habits." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/0da2caa7-75db-4a4e-8c9b-22aaea1c5e44" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/0da2caa7-75db-4a4e-8c9b-22aaea1c5e44" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
