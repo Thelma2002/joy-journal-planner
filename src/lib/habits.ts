@@ -41,8 +41,9 @@ export function createEmptyDay(date: Date): DayData {
 }
 
 export function loadDay(date: Date): DayData {
+  if (typeof window === "undefined") return createEmptyDay(date);
   const key = `habit-day-${getDateKey(date)}`;
-  const stored = localStorage.getItem(key);
+  const stored = window.localStorage.getItem(key);
   if (stored) {
     try {
       return JSON.parse(stored);
@@ -54,8 +55,9 @@ export function loadDay(date: Date): DayData {
 }
 
 export function saveDay(data: DayData): void {
+  if (typeof window === "undefined") return;
   const key = `habit-day-${data.date}`;
-  localStorage.setItem(key, JSON.stringify(data));
+  window.localStorage.setItem(key, JSON.stringify(data));
 }
 
 export function calculateStreak(fromDate: Date): number {
@@ -65,7 +67,7 @@ export function calculateStreak(fromDate: Date): number {
 
   while (true) {
     const key = `habit-day-${getDateKey(d)}`;
-    const stored = localStorage.getItem(key);
+    const stored = typeof window !== "undefined" ? window.localStorage.getItem(key) : null;
     if (!stored) break;
 
     try {
