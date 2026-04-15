@@ -29,6 +29,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#a0522d" },
       { title: "Rhythm — Daily Habit Tracker" },
       { name: "description", content: "Plan your day in 4 time blocks, track streaks, and build lasting habits." },
       { name: "author", content: "Lovable" },
@@ -71,5 +72,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  }
   return <Outlet />;
 }
