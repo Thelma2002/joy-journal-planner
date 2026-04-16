@@ -74,9 +74,30 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   useEffect(() => {
+    const isInIframe = (() => {
+      try {
+        return window.self !== window.top;
+      } catch {
+        return true;
+      }
+    })();
+
+    const isPreviewHost =
+      window.location.hostname.includes("id-preview--") ||
+      window.location.hostname.includes("lovableproject.com");
+
+    if (isPreviewHost || isInIframe) {
+      // Unregister any existing service workers in preview/iframe contexts
+      navigator.serviceWorker?.getRegistrations().then((registrations) => {
+        registrations.forEach((r) => r.unregister());
+      });
+      return;
+    }
+
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js").catch(() => {});
     }
   }, []);
+
   return <Outlet />;
 }
