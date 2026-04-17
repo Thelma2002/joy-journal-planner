@@ -77,7 +77,8 @@ export function TimeBlockCard({ block, onToggleTask, onAddTask, onRemoveTask }: 
               </span>
               <button
                 onClick={() => onRemoveTask(task.id)}
-                className="ml-auto opacity-0 transition-opacity group-hover:opacity-100"
+                className="ml-auto opacity-60 transition-opacity hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
+                aria-label="Remove task"
               >
                 <X className="h-3.5 w-3.5 text-muted-foreground hover:text-destructive" />
               </button>
